@@ -5,9 +5,9 @@ import java.util.Objects;
 
 public class EmployeePayrollData
 {
+    public static Double salary;
+    public String name;
     private int id;
-    private double salary;
-    private String name;
     private LocalDate startDate;
 
     public EmployeePayrollData(Integer id, String name, Double salary)
