@@ -9,6 +9,7 @@ public class EmployeePayrollDBService
 {
     private static PreparedStatement employeePayrollDataStatement;
     private static EmployeePayrollDBService employeePayrollDBService;
+    private PreparedStatement updateEmployeeSalary;
 
     EmployeePayrollDBService()
     {
@@ -66,16 +67,34 @@ public class EmployeePayrollDBService
 
     private int updateEmployeeDataUsingStatement(String name, Double salary)
     {
-    String sql = String.format("update employee_payroll set salary = %.2f where name = '%s';", salary, name);
-    try (Connection connection = this.getConnection())
-    {
-        Statement statement = connection.createStatement();
-        return statement.executeUpdate(sql);
-    } catch (SQLException e) {
-        e.printStackTrace();
+        String sql = String.format("update employee_payroll set salary = %.2f where name = '%s';", salary, name);
+        try (Connection connection = this.getConnection())
+        {
+            Statement statement = connection.createStatement();
+            return statement.executeUpdate(sql);
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return 0;
     }
-    return 0;
-}
+
+    int updateEmployeeDataUsingPreparedStatement(String name, Double salary)
+    {
+        List<EmployeePayrollData> employeePayrollList = null;
+        if (this.updateEmployeeSalary == null)
+            this.prepareStatementForToUpdateSalary();
+        try
+        {
+            updateEmployeeSalary.setString(2, name);
+            updateEmployeeSalary.setDouble(1, salary);
+            return updateEmployeeSalary.executeUpdate();
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
     public List<EmployeePayrollData> getEmployeePayrollData(String name)
     {
@@ -97,7 +116,8 @@ public class EmployeePayrollDBService
     private List<EmployeePayrollData> getEmployeePayrollData(ResultSet resultSet)
     {
         List<EmployeePayrollData> employeePayrollList = new ArrayList<>();
-        try {
+        try
+        {
             while (resultSet.next())
             {
                 int id = resultSet.getInt("id");
@@ -124,4 +144,16 @@ public class EmployeePayrollDBService
             e.printStackTrace();
         }
     }
+    private void prepareStatementForToUpdateSalary()
+    {
+        try
+        {
+            Connection connection = this.getConnection();
+            String sql = "update employee_payroll set salary = ? where name = ?";
+            updateEmployeeSalary = connection.prepareStatement(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

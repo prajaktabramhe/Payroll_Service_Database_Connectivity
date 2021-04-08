@@ -6,11 +6,10 @@ import java.util.List;
 
 public class EmployeePayrollService
 {
+    public enum IOService {DB_IO}
 
     private List<EmployeePayrollData> employeePayrollList;
     private List<EmployeePayrollData> employeePayrollDataList;
-
-    public enum IOService {CONSOLE_IO, FILE_IO, DB_IO, REST_IO}
 
     private EmployeePayrollDBService employeePayrollDBService;
 
@@ -38,7 +37,8 @@ public class EmployeePayrollService
         return employeePayrollDataList.get(0).equals(getEmployeePayrollData(name));
     }
 
-    public void updateEmployeeSalary(String name, Double salary) {
+    public void updateEmployeeSalary(String name, Double salary)
+    {
 
 
         int result = employeePayrollDBService.updateEmployeeData(name, salary);
@@ -46,6 +46,14 @@ public class EmployeePayrollService
         EmployeePayrollData employeePayrollData = this.getEmployeePayrollData(name);
         if (employeePayrollData != null)
             EmployeePayrollData.salary = salary;
+    }
+    public void updateEmployeeSalaryWithPreparedStatement(String name, Double salary)
+    {
+        int result = employeePayrollDBService.updateEmployeeDataUsingPreparedStatement(name, salary);
+        if (result == 0) return;
+        EmployeePayrollData employeePayrollData = this.getEmployeePayrollData(name);
+        if (employeePayrollData != null)
+            employeePayrollData.salary = salary;
     }
 
     private EmployeePayrollData getEmployeePayrollData(String name)

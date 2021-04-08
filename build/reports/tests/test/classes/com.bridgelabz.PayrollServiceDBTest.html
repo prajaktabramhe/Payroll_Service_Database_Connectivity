@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.482s</div>
+<div class="counter">0.442s</div>
 <p>duration</p>
 </div>
 </td>
@@ -80,8 +80,9 @@
 <h3 class="failures">givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB()</h3>
 <span class="code">
 <pre>java.lang.NullPointerException
-	at com.bridgelabz.EmployeePayrollService.checkEmployeePayrollInSyncWithDB(EmployeePayrollService.java:38)
-	at com.bridgelabz.PayrollServiceDBTest.givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB(PayrollServiceDBTest.java:25)
+	at com.bridgelabz.EmployeePayrollDBService.getEmployeePayrollData(EmployeePayrollDBService.java:106)
+	at com.bridgelabz.EmployeePayrollService.checkEmployeePayrollInSyncWithDB(EmployeePayrollService.java:36)
+	at com.bridgelabz.PayrollServiceDBTest.givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB(PayrollServiceDBTest.java:35)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -186,7 +187,7 @@
 </thead>
 <tr>
 <td class="failures">givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB()</td>
-<td class="failures">0.482s</td>
+<td class="failures">0.442s</td>
 <td class="failures">failed</td>
 </tr>
 </table>
@@ -197,7 +198,6 @@
 <pre>Connecting to database:jdbc:mysql://localhost:3306/payroll_service1?useSSL=false
 Connecting to database:jdbc:mysql://localhost:3306/payroll_service1?useSSL=false
 Connecting to database:jdbc:mysql://localhost:3306/payroll_service1?useSSL=false
-error
 </pre>
 </span>
 </div>
@@ -231,10 +231,10 @@ error
 	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:323)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
-	at com.bridgelabz.EmployeePayrollDBService.getConnection(EmployeePayrollDBService.java:31)
-	at com.bridgelabz.EmployeePayrollDBService.readData(EmployeePayrollDBService.java:42)
-	at com.bridgelabz.EmployeePayrollService.readEmployeePayrollData(EmployeePayrollService.java:31)
-	at com.bridgelabz.PayrollServiceDBTest.givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB(PayrollServiceDBTest.java:23)
+	at com.bridgelabz.EmployeePayrollDBService.getConnection(EmployeePayrollDBService.java:32)
+	at com.bridgelabz.EmployeePayrollDBService.readData(EmployeePayrollDBService.java:43)
+	at com.bridgelabz.EmployeePayrollService.readEmployeePayrollData(EmployeePayrollService.java:30)
+	at com.bridgelabz.PayrollServiceDBTest.givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB(PayrollServiceDBTest.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -350,11 +350,11 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown database 'pay
 	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:323)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
-	at com.bridgelabz.EmployeePayrollDBService.getConnection(EmployeePayrollDBService.java:31)
-	at com.bridgelabz.EmployeePayrollDBService.updateEmployeeDataUsingStatement(EmployeePayrollDBService.java:70)
-	at com.bridgelabz.EmployeePayrollDBService.updateEmployeeData(EmployeePayrollDBService.java:64)
+	at com.bridgelabz.EmployeePayrollDBService.getConnection(EmployeePayrollDBService.java:32)
+	at com.bridgelabz.EmployeePayrollDBService.updateEmployeeDataUsingStatement(EmployeePayrollDBService.java:71)
+	at com.bridgelabz.EmployeePayrollDBService.updateEmployeeData(EmployeePayrollDBService.java:65)
 	at com.bridgelabz.EmployeePayrollService.updateEmployeeSalary(EmployeePayrollService.java:44)
-	at com.bridgelabz.PayrollServiceDBTest.givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB(PayrollServiceDBTest.java:24)
+	at com.bridgelabz.PayrollServiceDBTest.givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB(PayrollServiceDBTest.java:34)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -470,11 +470,11 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown database 'pay
 	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:323)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
-	at com.bridgelabz.EmployeePayrollDBService.getConnection(EmployeePayrollDBService.java:31)
-	at com.bridgelabz.EmployeePayrollDBService.prepareStatementForEmployeeData(EmployeePayrollDBService.java:122)
-	at com.bridgelabz.EmployeePayrollDBService.getEmployeePayrollData(EmployeePayrollDBService.java:84)
-	at com.bridgelabz.EmployeePayrollService.checkEmployeePayrollInSyncWithDB(EmployeePayrollService.java:37)
-	at com.bridgelabz.PayrollServiceDBTest.givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB(PayrollServiceDBTest.java:25)
+	at com.bridgelabz.EmployeePayrollDBService.getConnection(EmployeePayrollDBService.java:32)
+	at com.bridgelabz.EmployeePayrollDBService.prepareStatementForEmployeeData(EmployeePayrollDBService.java:139)
+	at com.bridgelabz.EmployeePayrollDBService.getEmployeePayrollData(EmployeePayrollDBService.java:103)
+	at com.bridgelabz.EmployeePayrollService.checkEmployeePayrollInSyncWithDB(EmployeePayrollService.java:36)
+	at com.bridgelabz.PayrollServiceDBTest.givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB(PayrollServiceDBTest.java:35)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -574,7 +574,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown database 'pay
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.7</a> at Apr 8, 2021, 11:13:27 PM</p>
+<a href="http://www.gradle.org">Gradle 6.7</a> at Apr 8, 2021, 11:49:56 PM</p>
 </div>
 </div>
 </body>
