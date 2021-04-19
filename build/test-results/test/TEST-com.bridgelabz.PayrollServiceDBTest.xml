@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bridgelabz.PayrollServiceDBTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-04-19T11:59:16" hostname="DESKTOP-0QBG6NF" time="0.439">
+<testsuite name="com.bridgelabz.PayrollServiceDBTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-04-19T13:09:55" hostname="DESKTOP-0QBG6NF" time="0.464">
   <properties/>
-  <testcase name="givenNewEmployee_WhenAdded_ShouldSyncWithDB()" classname="com.bridgelabz.PayrollServiceDBTest" time="0.439">
+  <testcase name="givenNewEmployee_WhenAdded_ShouldSyncWithDB()" classname="com.bridgelabz.PayrollServiceDBTest" time="0.464">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at com.bridgelabz.EmployeePayrollService.addEmployeeToPayroll(EmployeePayrollService.java:92)
-	at com.bridgelabz.PayrollServiceDBTest.givenNewEmployee_WhenAdded_ShouldSyncWithDB(PayrollServiceDBTest.java:64)
+	at com.bridgelabz.PayrollServiceDBTest.givenNewEmployee_WhenAdded_ShouldSyncWithDB(PayrollServiceDBTest.java:63)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -96,11 +96,11 @@
 </failure>
   </testcase>
   <system-out><![CDATA[Connecting to database:jdbc:mysql://localhost:3306/payroll_service?useSSL=false
-Connection is successful!!!!!!com.mysql.jdbc.JDBC4Connection@5d96e6ef
+Connection is successful!!!!!!com.mysql.jdbc.JDBC4Connection@607e25e3
 Connecting to database:jdbc:mysql://localhost:3306/payroll_service?useSSL=false
-Connection is successful!!!!!!com.mysql.jdbc.JDBC4Connection@19102c80
+Connection is successful!!!!!!com.mysql.jdbc.JDBC4Connection@475a7a16
 ]]></system-out>
-  <system-err><![CDATA[java.sql.SQLException: Column count doesn't match value count at row 1
+  <system-err><![CDATA[java.sql.SQLException: Field 'department' doesn't have a default value
 	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
 	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3933)
 	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3869)
@@ -110,9 +110,9 @@ Connection is successful!!!!!!com.mysql.jdbc.JDBC4Connection@19102c80
 	at com.mysql.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1536)
 	at com.mysql.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2593)
 	at com.mysql.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1600)
-	at com.bridgelabz.EmployeePayrollDBService.addEmployeePayroll(EmployeePayrollDBService.java:224)
+	at com.bridgelabz.EmployeePayrollDBService.addEmployeePayroll(EmployeePayrollDBService.java:251)
 	at com.bridgelabz.EmployeePayrollService.addEmployeeToPayroll(EmployeePayrollService.java:92)
-	at com.bridgelabz.PayrollServiceDBTest.givenNewEmployee_WhenAdded_ShouldSyncWithDB(PayrollServiceDBTest.java:64)
+	at com.bridgelabz.PayrollServiceDBTest.givenNewEmployee_WhenAdded_ShouldSyncWithDB(PayrollServiceDBTest.java:63)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
