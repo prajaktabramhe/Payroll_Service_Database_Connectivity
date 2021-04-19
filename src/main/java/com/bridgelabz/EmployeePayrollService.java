@@ -87,4 +87,8 @@ public class EmployeePayrollService
     {
         return employeePayrollDBService.readAverageSalaryByGender();
     }
+    public void addEmployeeToPayroll(String name, double basic_pay, LocalDate start, String gendder)
+    {
+        employeePayrollList.add(employeePayrollDBService.addEmployeePayroll(name, basic_pay, start, gendder));
+    }
 }
