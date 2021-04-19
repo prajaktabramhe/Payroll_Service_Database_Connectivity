@@ -1,11 +1,14 @@
 package com.bridgelabz;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 
 public class EmployeePayrollService
 {
+
+
     public enum IOService {DB_IO}
 
     private List<EmployeePayrollData> employeePayrollList;
@@ -19,7 +22,8 @@ public class EmployeePayrollService
          employeePayrollDBService = EmployeePayrollDBService.getInstance();
     }
 
-    public EmployeePayrollService(List<EmployeePayrollData> employeePayrollList) {
+    public EmployeePayrollService(List<EmployeePayrollData> employeePayrollList)
+    {
         this();
         this.employeePayrollList = employeePayrollList;
     }
@@ -31,29 +35,35 @@ public class EmployeePayrollService
         return this.employeePayrollDataList;
     }
 
+    public List<EmployeePayrollData> readEmployeePayrollDataForDateRange(IOService ioService, LocalDate startDate, LocalDate endDate)
+    {
+        if (ioService.equals(IOService.DB_IO))
+           return employeePayrollDBService.getEmployeePayrollDataForDateRange(startDate, endDate);
+        return null;
+    }
+
+
     public boolean checkEmployeePayrollInSyncWithDB(String name)
     {
         List<EmployeePayrollData> employeePayrollDataList = employeePayrollDBService.getEmployeePayrollData(name);
         return employeePayrollDataList.get(0).equals(getEmployeePayrollData(name));
     }
 
-    public void updateEmployeeSalary(String name, Double salary)
+    public void updateEmployeeSalary(String name, Double basic_pay)
     {
 
-
-        int result = employeePayrollDBService.updateEmployeeData(name, salary);
+        int result = employeePayrollDBService.updateEmployeeData(name, basic_pay);
         if (result == 0) return;
         EmployeePayrollData employeePayrollData = this.getEmployeePayrollData(name);
         if (employeePayrollData != null)
-            EmployeePayrollData.salary = salary;
+            EmployeePayrollData.basic_pay = basic_pay;
     }
-    public void updateEmployeeSalaryWithPreparedStatement(String name, Double salary)
-    {
-        int result = employeePayrollDBService.updateEmployeeDataUsingPreparedStatement(name, salary);
+    public void updateEmployeeSalaryWithPreparedStatement(String name, Double basic_pay) {
+        int result = employeePayrollDBService.updateEmployeeDataUsingPreparedStatement(name, basic_pay);
         if (result == 0) return;
         EmployeePayrollData employeePayrollData = this.getEmployeePayrollData(name);
         if (employeePayrollData != null)
-            employeePayrollData.salary = salary;
+            employeePayrollData.basic_pay = basic_pay;
     }
 
     private EmployeePayrollData getEmployeePayrollData(String name)
@@ -61,5 +71,15 @@ public class EmployeePayrollService
         return this.employeePayrollList.stream().filter(employeePayrollDataItem -> employeePayrollDataItem.name.equals(name)).findFirst().orElse(null);
     }
 
+    public List<EmployeePayrollData> getEmployeeSalary(String name, Double basic_pay)
+    {
+        List<EmployeePayrollData> employeePayrollData = employeePayrollDBService.getSalary(name, basic_pay);
+        return employeePayrollData;
+    }
+
+    public List<EmployeePayrollData> readEmployeePayrollDataForDateRange(LocalDate startDate, LocalDate endDate)
+    {
+        return employeePayrollDBService.getEmployeePayrollDataForDateRange(startDate, endDate);
+    }
 
 }

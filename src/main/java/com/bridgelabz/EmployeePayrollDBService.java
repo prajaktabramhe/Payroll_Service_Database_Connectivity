@@ -10,6 +10,8 @@ public class EmployeePayrollDBService
     private static PreparedStatement employeePayrollDataStatement;
     private static EmployeePayrollDBService employeePayrollDBService;
     private PreparedStatement updateEmployeeSalary;
+    private PreparedStatement prepareStatement;
+    private PreparedStatement employeeSalary;
 
     EmployeePayrollDBService()
     {
@@ -24,7 +26,7 @@ public class EmployeePayrollDBService
 
     private Connection getConnection() throws SQLException
     {
-        String jdbcURL = "jdbc:mysql://localhost:3306/payroll_service1?useSSL=false";
+        String jdbcURL = "jdbc:mysql://localhost:3306/payroll_service?useSSL=false";
         String userName = "root";
         String password = "Admin@123";
         Connection connection;
@@ -36,38 +38,39 @@ public class EmployeePayrollDBService
 
     public List<EmployeePayrollData> readData()
     {
-        String sql = "SELECT * FROM employee_payroll; ";
-        List<EmployeePayrollData> employeePayrollDataList = new ArrayList<>();
-        try
-        {
-            Connection connection = this.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet result = ((Statement) statement).executeQuery(sql);
-            while(result.next())
+        String sql = "SELECT * FROM  employee_payroll; ";
+        return this.getEmployeePayrollDataUsingDB(sql);
 
-            {
-                int id  = result.getInt("id");
-                String name = result.getString("name");
-                double salary = result.getDouble("salary");
-                LocalDate startDate = result.getDate("start").toLocalDate();
-                employeePayrollDataList.add(new EmployeePayrollData(id, name, salary, startDate));
-            }
-            connection.close();
-        } catch (Exception e)
+    }
+    public List<EmployeePayrollData> getEmployeePayrollDataForDateRange(LocalDate startDate, LocalDate endDate)
+    {
+        String sql = String.format("SELECT * FROM  employee_payroll WHERE START BETWEEN '%s' AND '%s';", Date.valueOf(startDate), Date.valueOf(endDate));
+        return this.getEmployeePayrollDataUsingDB(sql);
+    }
+
+    private List<EmployeePayrollData> getEmployeePayrollDataUsingDB(String sql)
+    {
+        List<EmployeePayrollData> employeePayrollList = new ArrayList<>();
+        try (Connection connection = this.getConnection())
+        {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            employeePayrollList = this.getEmployeePayrollData(resultSet);
+        } catch (SQLException e)
         {
             e.printStackTrace();
         }
-        return employeePayrollDataList;
+        return employeePayrollList;
     }
 
-    int updateEmployeeData(String name, Double salary)
+    int updateEmployeeData(String name, Double basic_pay)
     {
-        return this.updateEmployeeDataUsingStatement(name, salary);
+        return this.updateEmployeeDataUsingStatement(name, basic_pay);
     }
 
-    private int updateEmployeeDataUsingStatement(String name, Double salary)
+    private int updateEmployeeDataUsingStatement(String name, Double  basic_pay)
     {
-        String sql = String.format("update employee_payroll set salary = %.2f where name = '%s';", salary, name);
+        String sql = String.format("update employee_payroll set  basic_pay = %.2f where name = '%s';",  basic_pay, name);
         try (Connection connection = this.getConnection())
         {
             Statement statement = connection.createStatement();
@@ -79,7 +82,7 @@ public class EmployeePayrollDBService
         return 0;
     }
 
-    int updateEmployeeDataUsingPreparedStatement(String name, Double salary)
+    int updateEmployeeDataUsingPreparedStatement(String name, Double basic_pay)
     {
         List<EmployeePayrollData> employeePayrollList = null;
         if (this.updateEmployeeSalary == null)
@@ -87,7 +90,7 @@ public class EmployeePayrollDBService
         try
         {
             updateEmployeeSalary.setString(2, name);
-            updateEmployeeSalary.setDouble(1, salary);
+            updateEmployeeSalary.setDouble(1, basic_pay);
             return updateEmployeeSalary.executeUpdate();
         } catch (SQLException e)
         {
@@ -113,6 +116,36 @@ public class EmployeePayrollDBService
      
         return employeePayrollList;
     }
+
+
+    public List<EmployeePayrollData> getSalary(String name, Double basic_pay) {
+        List<EmployeePayrollData> employeePayrollList = null;
+        String sql = "SELECT * FROM  employee_payroll WHERE name = ? AND  basic_pay = ?";
+        if (this.employeeSalary == null)
+            employeeSalary = this.prepareStatementForEmployeeData(sql);
+        try {
+            employeeSalary.setString(1, name);
+            employeeSalary.setDouble(2, basic_pay);
+            ResultSet resultSet = employeeSalary.executeQuery();
+            employeePayrollList = this.getEmployeePayrollData(resultSet);
+            return employeePayrollList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    private PreparedStatement prepareStatementForEmployeeData(String sql) {
+        try {
+            Connection connection = this.getConnection();
+            prepareStatement = connection.prepareStatement(sql);
+            return prepareStatement;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
     private List<EmployeePayrollData> getEmployeePayrollData(ResultSet resultSet)
     {
         List<EmployeePayrollData> employeePayrollList = new ArrayList<>();
@@ -122,9 +155,9 @@ public class EmployeePayrollDBService
             {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
-                double salary = resultSet.getDouble("salary");
+                double  basic_pay = resultSet.getDouble("basic_pay");
                 LocalDate startDate = resultSet.getDate("start").toLocalDate();
-                employeePayrollList.add(new EmployeePayrollData(id, name, salary, startDate));
+                employeePayrollList.add(new EmployeePayrollData(id, name,  basic_pay, startDate));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -137,7 +170,7 @@ public class EmployeePayrollDBService
         try
         {
             Connection connection = this.getConnection();
-            String sql = "SELECT * FROM employee_payroll WHERE name = ?";
+            String sql = "SELECT * FROM  employee_payroll WHERE name = ?";
             employeePayrollDataStatement = connection.prepareStatement(sql);
         } catch (SQLException e)
         {
@@ -149,11 +182,14 @@ public class EmployeePayrollDBService
         try
         {
             Connection connection = this.getConnection();
-            String sql = "update employee_payroll set salary = ? where name = ?";
+            String sql = "update  employee_payroll set  basic_pay = ? where name = ?";
             updateEmployeeSalary = connection.prepareStatement(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+
+
 
 }
