@@ -3,6 +3,7 @@ package com.bridgelabz;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 
 public class EmployeePayrollService
@@ -82,4 +83,8 @@ public class EmployeePayrollService
         return employeePayrollDBService.getEmployeePayrollDataForDateRange(startDate, endDate);
     }
 
+    public Map<String, Double> averageSalaryByGender()
+    {
+        return employeePayrollDBService.readAverageSalaryByGender();
+    }
 }
