@@ -2,6 +2,8 @@ package com.bridgelabz;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -87,8 +89,8 @@ public class EmployeePayrollService
     {
         return employeePayrollDBService.readAverageSalaryByGender();
     }
-    public void addEmployeeToPayroll(String name, double basic_pay, LocalDate start, String gendder)
-    {
-        employeePayrollList.add(employeePayrollDBService.addEmployeePayroll(name, basic_pay, start, gendder));
+    public void addEmployeeAndPayrollData(String name, Double salary, LocalDate startDate, String gender,ArrayList<String> department){
+        employeePayrollList.add(
+                employeePayrollDBService.addEmployeePayroll(name, salary, startDate, gender, department));
     }
 }

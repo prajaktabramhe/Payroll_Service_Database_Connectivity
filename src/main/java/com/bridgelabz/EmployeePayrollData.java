@@ -8,7 +8,8 @@ public class EmployeePayrollData
     public static Double  basic_pay;
     public String name;
     private int id;
-    private LocalDate startDate;
+    public LocalDate startDate;
+
 
     public EmployeePayrollData(Integer id, String name, Double  basic_pay)
     {
