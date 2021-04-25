@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bridgelabz.PayrollServiceDBTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-04-25T18:48:14" hostname="DESKTOP-0QBG6NF" time="0.724">
+<testsuite name="com.bridgelabz.PayrollServiceDBTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-04-25T19:13:53" hostname="DESKTOP-0QBG6NF" time="0.62">
   <properties/>
-  <testcase name="givenNewEmployee_WhenAddedUsingER_ShouldSyncWithDB()" classname="com.bridgelabz.PayrollServiceDBTest" time="0.724">
+  <testcase name="givenNewEmployee_WhenAddedUsingER_ShouldSyncWithDB()" classname="com.bridgelabz.PayrollServiceDBTest" time="0.62">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at com.bridgelabz.EmployeePayrollService.addEmployeeAndPayrollData(EmployeePayrollService.java:93)
-	at com.bridgelabz.PayrollServiceDBTest.givenNewEmployee_WhenAddedUsingER_ShouldSyncWithDB(PayrollServiceDBTest.java:70)
+	at com.bridgelabz.EmployeePayrollService.addEmployeeAndPayrollData(EmployeePayrollService.java:95)
+	at com.bridgelabz.PayrollServiceDBTest.givenNewEmployee_WhenAddedUsingER_ShouldSyncWithDB(PayrollServiceDBTest.java:74)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

@@ -22,7 +22,7 @@ public class EmployeePayrollService
 
     public EmployeePayrollService()
     {
-         employeePayrollDBService = EmployeePayrollDBService.getInstance();
+        employeePayrollDBService = EmployeePayrollDBService.getInstance();
     }
 
     public EmployeePayrollService(List<EmployeePayrollData> employeePayrollList)
@@ -33,15 +33,14 @@ public class EmployeePayrollService
 
     public List<EmployeePayrollData> readEmployeePayrollData(IOService ioService)
     {
-        if(ioService.equals(IOService.DB_IO))
+        if (ioService.equals(IOService.DB_IO))
             this.employeePayrollDataList = new EmployeePayrollDBService().readData();
         return this.employeePayrollDataList;
     }
 
-    public List<EmployeePayrollData> readEmployeePayrollDataForDateRange(IOService ioService, LocalDate startDate, LocalDate endDate)
-    {
+    public List<EmployeePayrollData> readEmployeePayrollDataForDateRange(IOService ioService, LocalDate startDate, LocalDate endDate) {
         if (ioService.equals(IOService.DB_IO))
-           return employeePayrollDBService.getEmployeePayrollDataForDateRange(startDate, endDate);
+            return employeePayrollDBService.getEmployeePayrollDataForDateRange(startDate, endDate);
         return null;
     }
 
@@ -61,7 +60,9 @@ public class EmployeePayrollService
         if (employeePayrollData != null)
             EmployeePayrollData.basic_pay = basic_pay;
     }
-    public void updateEmployeeSalaryWithPreparedStatement(String name, Double basic_pay) {
+
+    public void updateEmployeeSalaryWithPreparedStatement(String name, Double basic_pay)
+    {
         int result = employeePayrollDBService.updateEmployeeDataUsingPreparedStatement(name, basic_pay);
         if (result == 0) return;
         EmployeePayrollData employeePayrollData = this.getEmployeePayrollData(name);
@@ -85,10 +86,12 @@ public class EmployeePayrollService
         return employeePayrollDBService.getEmployeePayrollDataForDateRange(startDate, endDate);
     }
 
+    //UC11
     public Map<String, Double> averageSalaryByGender()
     {
         return employeePayrollDBService.readAverageSalaryByGender();
     }
+
     public void addEmployeeAndPayrollData(String name, Double salary, LocalDate startDate, String gender,ArrayList<String> department){
         employeePayrollList.add(
                 employeePayrollDBService.addEmployeePayroll(name, salary, startDate, gender, department));

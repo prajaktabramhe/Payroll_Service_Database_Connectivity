@@ -52,6 +52,7 @@ public class PayrollServiceDBTest
         List<EmployeePayrollData> employeePayrollData = employeePayrollService.readEmployeePayrollDataForDateRange(startDate, endDate);
         Assertions.assertEquals(4, employeePayrollData.size());
     }
+    //UC10
     @Test
     public void givenPayrollData_WhenAverageSalaryRetrieveByGender_ShouldReturnProperValue()
     {
@@ -61,6 +62,7 @@ public class PayrollServiceDBTest
         Assertions.assertTrue(averageSalaryByGender.get("M").equals(300000.00) && averageSalaryByGender.get("F").equals(400000.00));
     }
 
+    //UC11
     @Test
     public void givenNewEmployee_WhenAddedUsingER_ShouldSyncWithDB()
     {
@@ -73,5 +75,6 @@ public class PayrollServiceDBTest
         boolean isSynced = employeePayrollService.checkEmployeePayrollInSyncWithDB("Mark");
         Assertions.assertTrue(isSynced);
     }
+
 
 }
