@@ -96,4 +96,8 @@ public class EmployeePayrollService
         employeePayrollList.add(
                 employeePayrollDBService.addEmployeePayroll(name, salary, startDate, gender, department));
     }
+    public void removeEmployee(int empId)
+    {
+        employeePayrollDBService.removeEmployeeFromDB(empId);
+    }
 }

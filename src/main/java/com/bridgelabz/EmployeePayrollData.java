@@ -10,7 +10,6 @@ public class EmployeePayrollData
     private int id;
     public LocalDate startDate;
 
-
     public EmployeePayrollData(Integer id, String name, Double  basic_pay)
     {
         this.id = id;

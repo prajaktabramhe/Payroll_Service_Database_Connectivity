@@ -13,8 +13,9 @@ import java.util.Map;
 
 public class PayrollServiceDBTest
 {
-
-@Test
+    EmployeePayrollService employeePayrollService;
+    List<EmployeePayrollData> employeePayrollList;
+    @Test
     public  void givenEmployeePayrollDB_WhenRetrieved_ShouldMatchEmployeeCount()
     {
         EmployeePayrollService employeePayrollService = new EmployeePayrollService();
@@ -76,5 +77,12 @@ public class PayrollServiceDBTest
         Assertions.assertTrue(isSynced);
     }
 
-
+    @Test
+    public void givenEmployeeId_WhenDeletedUsing_ShouldSyncWithDB()
+    {
+        EmployeePayrollService employeePayrollService = new EmployeePayrollService();
+        employeePayrollList = employeePayrollService.readEmployeePayrollData(EmployeePayrollService.IOService.DB_IO);
+        employeePayrollService.removeEmployee(3);
+        Assertions.assertEquals(7, employeePayrollList.size());
+    }
 }
