@@ -33,12 +33,13 @@ public class EmployeePayrollService
 
     public List<EmployeePayrollData> readEmployeePayrollData(IOService ioService)
     {
-        if (ioService.equals(IOService.DB_IO))
+        if(ioService.equals(IOService.DB_IO))
             this.employeePayrollDataList = new EmployeePayrollDBService().readData();
         return this.employeePayrollDataList;
     }
 
-    public List<EmployeePayrollData> readEmployeePayrollDataForDateRange(IOService ioService, LocalDate startDate, LocalDate endDate) {
+    public List<EmployeePayrollData> readEmployeePayrollDataForDateRange(IOService ioService, LocalDate startDate, LocalDate endDate)
+    {
         if (ioService.equals(IOService.DB_IO))
             return employeePayrollDBService.getEmployeePayrollDataForDateRange(startDate, endDate);
         return null;
@@ -60,9 +61,7 @@ public class EmployeePayrollService
         if (employeePayrollData != null)
             EmployeePayrollData.basic_pay = basic_pay;
     }
-
-    public void updateEmployeeSalaryWithPreparedStatement(String name, Double basic_pay)
-    {
+    public void updateEmployeeSalaryWithPreparedStatement(String name, Double basic_pay) {
         int result = employeePayrollDBService.updateEmployeeDataUsingPreparedStatement(name, basic_pay);
         if (result == 0) return;
         EmployeePayrollData employeePayrollData = this.getEmployeePayrollData(name);
@@ -86,18 +85,36 @@ public class EmployeePayrollService
         return employeePayrollDBService.getEmployeePayrollDataForDateRange(startDate, endDate);
     }
 
-    //UC11
     public Map<String, Double> averageSalaryByGender()
     {
         return employeePayrollDBService.readAverageSalaryByGender();
     }
-
-    public void addEmployeeAndPayrollData(String name, Double salary, LocalDate startDate, String gender,ArrayList<String> department){
-        employeePayrollList.add(
-                employeePayrollDBService.addEmployeePayroll(name, salary, startDate, gender, department));
+    public void addEmployeeToPayroll(String name, double basic_pay, LocalDate start, String gendder)
+    {
+        employeePayrollList.add(employeePayrollDBService.addEmployeePayroll(name, basic_pay, start, gendder));
     }
+
     public void removeEmployee(int empId)
     {
         employeePayrollDBService.removeEmployeeFromDB(empId);
+    }
+
+
+    public void addEmployeeAndPayroll(List<EmployeePayrollData> employeePayrollDataList)
+    {
+        employeePayrollDataList.forEach(employeePayrollData -> {
+            this.addEmployeeAndPayrollData(employeePayrollData.name, employeePayrollData.basic_pay,
+                    employeePayrollData.startDate, employeePayrollData.gender);
+        });
+    }
+
+    private void addEmployeeAndPayrollData(String name, double basic_pay, LocalDate startDate, String gender)
+    {
+        employeePayrollList.add(employeePayrollDBService.addEmployeePayrollIntoDB(name, basic_pay, startDate, gender));
+    }
+
+    public int countEntries()
+    {
+        return employeePayrollList.size();
     }
 }
