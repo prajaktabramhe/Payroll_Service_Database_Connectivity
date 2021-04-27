@@ -7,8 +7,9 @@ public class EmployeePayrollData
 {
     public static Double  basic_pay;
     public String name;
-    private int id;
-    private LocalDate startDate;
+    public int id;
+    public String gender;
+    public LocalDate startDate;
 
     public EmployeePayrollData(Integer id, String name, Double  basic_pay)
     {
@@ -24,6 +25,11 @@ public class EmployeePayrollData
         this.startDate = startDate;
     }
 
+    public EmployeePayrollData(Integer id, String name, String gender, Double salary, LocalDate startDate)
+    {
+        this(id, name, salary, startDate);
+        this.gender = gender;
+    }
     @Override
     public String toString()
     {

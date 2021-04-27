@@ -3,7 +3,10 @@ package com.bridgelabz;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -64,5 +67,24 @@ public class PayrollServiceDBTest
         employeePayrollService.addEmployeeToPayroll("Mark", 5000000.0, LocalDate.now(), "M");
         boolean result = employeePayrollService.checkEmployeePayrollInSyncWithDB("Mark");
         Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void given6Employees_WhenAdded_Should_ShouldMatchEmpEntries()
+    {
+        EmployeePayrollData[] arrayOfEmps = {
+                new EmployeePayrollData(0, "Jeff Bezos", "M", 100000.0, LocalDate.now()),
+                new EmployeePayrollData(0, "Bill Gates", "M", 200000.0, LocalDate.now()),
+                new EmployeePayrollData(0, "Mark Zuckerberg", "M", 300000.0, LocalDate.now()),
+                new EmployeePayrollData(0, "Sunder", "M", 600000.0, LocalDate.now()),
+                new EmployeePayrollData(0, "Mukesh", "M", 1000000.0, LocalDate.now()),
+                new EmployeePayrollData(0, "Anil", "M", 200000.0, LocalDate.now()),
+        };
+        EmployeePayrollService employeePayrollService = new EmployeePayrollService();
+        employeePayrollService.readEmployeePayrollData(EmployeePayrollService.IOService.DB_IO);
+        Instant start = Instant.now();
+        employeePayrollService.addEmployeeAndPayroll(Arrays.asList(arrayOfEmps));
+        Instant end = Instant.now();
+        System.out.println("Duration without Thread: " + Duration.between(start, end));
     }
 }

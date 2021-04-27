@@ -91,4 +91,29 @@ public class EmployeePayrollService
     {
         employeePayrollList.add(employeePayrollDBService.addEmployeePayroll(name, basic_pay, start, gendder));
     }
+
+    public void removeEmployee(int empId)
+    {
+        employeePayrollDBService.removeEmployeeFromDB(empId);
+    }
+
+
+    public void addEmployeeAndPayroll(List<EmployeePayrollData> employeePayrollDataList)
+    {
+        employeePayrollDataList.forEach(employeePayrollData -> {
+            this.addEmployeeAndPayrollData(employeePayrollData.name, employeePayrollData.basic_pay,
+                    employeePayrollData.startDate, employeePayrollData.gender);
+        });
+    }
+
+    private void addEmployeeAndPayrollData(String name, double basic_pay, LocalDate startDate, String gender)
+    {
+        employeePayrollList.add(employeePayrollDBService.addEmployeePayrollIntoDB(name, basic_pay, startDate, gender));
+    }
+
+    public int countEntries()
+    {
+        return employeePayrollList.size();
+    }
 }
+
