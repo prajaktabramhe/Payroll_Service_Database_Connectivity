@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bridgelabz.PayrollServiceDBTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-04-30T10:23:11" hostname="DESKTOP-0QBG6NF" time="0.828">
+<testsuite name="com.bridgelabz.PayrollServiceDBTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-04-30T11:10:18" hostname="DESKTOP-0QBG6NF" time="0.776">
   <properties/>
-  <testcase name="given6Employees_WhenAdded_Should_ShouldMatchEmpEntries()" classname="com.bridgelabz.PayrollServiceDBTest" time="0.828">
+  <testcase name="given6Employees_WhenAdded_Should_ShouldMatchEmpEntries()" classname="com.bridgelabz.PayrollServiceDBTest" time="0.776">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at com.bridgelabz.EmployeePayrollService.addEmployeeAndPayrollData(EmployeePayrollService.java:112)
-	at com.bridgelabz.EmployeePayrollService.lambda$addEmployeeAndPayroll$1(EmployeePayrollService.java:105)
+	at com.bridgelabz.EmployeePayrollService.addEmployeeAndPayrollData(EmployeePayrollService.java:115)
+	at com.bridgelabz.EmployeePayrollService.lambda$addEmployeeAndPayroll$1(EmployeePayrollService.java:106)
 	at java.base/java.util.Arrays$ArrayList.forEach(Arrays.java:4390)
 	at com.bridgelabz.EmployeePayrollService.addEmployeeAndPayroll(EmployeePayrollService.java:104)
-	at com.bridgelabz.PayrollServiceDBTest.given6Employees_WhenAdded_Should_ShouldMatchEmpEntries(PayrollServiceDBTest.java:87)
+	at com.bridgelabz.PayrollServiceDBTest.given6Employees_WhenAdded_Should_ShouldMatchEmpEntries(PayrollServiceDBTest.java:88)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -100,12 +100,13 @@
   </testcase>
   <system-out><![CDATA[Processing Thread : Test workerConnecting to database with id :1
 Connecting to database:jdbc:mysql://localhost:3306/payroll_service?useSSL=false
-Processing Thread : Test worker Id:1Connection is successful!com.mysql.jdbc.JDBC4Connection@37ee74e7
-Connection is successful!!!!!!com.mysql.jdbc.JDBC4Connection@37ee74e7
+Processing Thread : Test worker Id:1Connection is successful!com.mysql.jdbc.JDBC4Connection@6d35a4e7
+Connection is successful!!!!!!com.mysql.jdbc.JDBC4Connection@6d35a4e7
+Employee Beingg Added: Jeff Bezos
 Processing Thread : Test workerConnecting to database with id :1
 Connecting to database:jdbc:mysql://localhost:3306/payroll_service?useSSL=false
-Processing Thread : Test worker Id:1Connection is successful!com.mysql.jdbc.JDBC4Connection@66d098ba
-Connection is successful!!!!!!com.mysql.jdbc.JDBC4Connection@66d098ba
+Processing Thread : Test worker Id:1Connection is successful!com.mysql.jdbc.JDBC4Connection@62632b09
+Connection is successful!!!!!!com.mysql.jdbc.JDBC4Connection@62632b09
 ]]></system-out>
   <system-err><![CDATA[com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`payroll_service`.`payroll_detils`, CONSTRAINT `payroll_detils_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employee_payroll` (`id`) ON DELETE CASCADE)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
@@ -126,11 +127,11 @@ Connection is successful!!!!!!com.mysql.jdbc.JDBC4Connection@66d098ba
 	at com.mysql.jdbc.PreparedStatement.executeLargeUpdate(PreparedStatement.java:5187)
 	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2055)
 	at com.bridgelabz.EmployeePayrollDBService.addEmployeePayrollIntoDB(EmployeePayrollDBService.java:367)
-	at com.bridgelabz.EmployeePayrollService.addEmployeeAndPayrollData(EmployeePayrollService.java:112)
-	at com.bridgelabz.EmployeePayrollService.lambda$addEmployeeAndPayroll$1(EmployeePayrollService.java:105)
+	at com.bridgelabz.EmployeePayrollService.addEmployeeAndPayrollData(EmployeePayrollService.java:115)
+	at com.bridgelabz.EmployeePayrollService.lambda$addEmployeeAndPayroll$1(EmployeePayrollService.java:106)
 	at java.base/java.util.Arrays$ArrayList.forEach(Arrays.java:4390)
 	at com.bridgelabz.EmployeePayrollService.addEmployeeAndPayroll(EmployeePayrollService.java:104)
-	at com.bridgelabz.PayrollServiceDBTest.given6Employees_WhenAdded_Should_ShouldMatchEmpEntries(PayrollServiceDBTest.java:87)
+	at com.bridgelabz.PayrollServiceDBTest.given6Employees_WhenAdded_Should_ShouldMatchEmpEntries(PayrollServiceDBTest.java:88)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
