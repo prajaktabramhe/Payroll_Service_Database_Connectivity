@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bridgelabz.PayrollServiceDBTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-04-27T18:05:01" hostname="DESKTOP-0QBG6NF" time="0.871">
+<testsuite name="com.bridgelabz.PayrollServiceDBTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-04-30T09:20:25" hostname="DESKTOP-0QBG6NF" time="0.843">
   <properties/>
-  <testcase name="given6Employees_WhenAdded_Should_ShouldMatchEmpEntries()" classname="com.bridgelabz.PayrollServiceDBTest" time="0.871">
+  <testcase name="given6Employees_WhenAdded_Should_ShouldMatchEmpEntries()" classname="com.bridgelabz.PayrollServiceDBTest" time="0.843">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at com.bridgelabz.EmployeePayrollService.addEmployeeAndPayrollData(EmployeePayrollService.java:113)
 	at com.bridgelabz.EmployeePayrollService.lambda$addEmployeeAndPayroll$1(EmployeePayrollService.java:106)
