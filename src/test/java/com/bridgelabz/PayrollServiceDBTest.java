@@ -72,7 +72,8 @@ public class PayrollServiceDBTest
 
 
     @Test
-    public void given6Employees_WhenAdded_Should_ShouldMatchEmpEntries() {
+    public void given6Employees_WhenAdded_Should_ShouldMatchEmpEntries()
+    {
         EmployeePayrollData[] arrayOfEmps = {
                 new EmployeePayrollData(0, "Jeff Bezos", "M", 100000.0, LocalDate.now()),
                 new EmployeePayrollData(0, "Bill Gates", "M", 200000.0, LocalDate.now()),
