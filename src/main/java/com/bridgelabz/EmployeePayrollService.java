@@ -19,8 +19,7 @@ public class EmployeePayrollService
 
     private EmployeePayrollDBService employeePayrollDBService;
 
-
-    public EmployeePayrollService()
+       public EmployeePayrollService()
     {
         employeePayrollDBService = EmployeePayrollDBService.getInstance();
     }
