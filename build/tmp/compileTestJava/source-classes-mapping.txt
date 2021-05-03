@@ -1,2 +1,4 @@
 com/bridgelabz/PayrollServiceDBTest.java
  com.bridgelabz.PayrollServiceDBTest
+com/bridgelabz/RestAssuredTest.java
+ com.bridgelabz.RestAssuredTest

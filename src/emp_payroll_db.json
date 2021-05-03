@@ -1,0 +1,67 @@
+{
+  "employee-payroll": [
+    {
+      "id": 1,
+      "name": "Michael",
+      "salary": 1000000,
+      "startDates": [
+        {
+          "year": 2017,
+          "month": 1,
+          "day": 1
+        }
+      ],
+      "gender": "M"
+    },
+    {
+      "id": 2,
+      "name": "Alice",
+      "salary": 3000000,
+      "startDates": [
+        {
+          "year": 2018,
+          "month": 1,
+          "day": 5
+        }
+      ],
+      "gender": "F"
+    },
+    {
+      "id": 3,
+      "name": "Alex",
+      "salary": 2000000,
+      "startDates": [
+        {
+          "year": 2019,
+          "month": 1,
+          "day": 3
+        }
+      ],
+      "gender": "M"
+    },
+    {
+      "id": 4,
+      "name": "Tina",
+      "salary": 3000000,
+      "startDates": [
+        {
+          "year": 2020,
+          "month": 1,
+          "day": 1
+        }
+      ],
+      "gender": "F"
+    },
+    {
+      "id": 5,
+      "name": "Manish",
+      "salary": 4000000,
+      "startDate": {
+        "year": 2020,
+        "month": 11,
+        "day": 2
+      },
+      "gender": "M"
+    }
+  ]
+}
