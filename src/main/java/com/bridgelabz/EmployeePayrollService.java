@@ -100,12 +100,15 @@ public class EmployeePayrollService
     public void addEmployeeAndPayroll(List<EmployeePayrollData> employeePayrollDataList)
     {
         employeePayrollDataList.forEach(employeePayrollData -> {
-            System.out.println("Employee Beingg Added: " + employeePayrollData.name);
             this.addEmployeeAndPayrollData(employeePayrollData.name, employeePayrollData.basic_pay,
                     employeePayrollData.startDate, employeePayrollData.gender);
-            System.out.println("Employee Added: "+ employeePayrollData.name);
         });
         System.out.println(this.employeePayrollList);
+    }
+    public void addEmployeeAndPayroll(EmployeePayrollData employeePayrollData, IOService ioService) {
+        if (ioService.equals(IOService.DB_IO))
+            this.addEmployeeAndPayrollData(employeePayrollData.name, employeePayrollData.basic_pay, employeePayrollData.startDate, employeePayrollData.gender);
+        else employeePayrollList.add(employeePayrollData);
     }
 
     private void addEmployeeAndPayrollData(String name, double basic_pay, LocalDate startDate, String gender)
