@@ -1,17 +1,9 @@
-<<<<<<< HEAD
-=======
 com/bridgelabz/PayrollServiceDB.java
  com.bridgelabz.PayrollServiceDB
->>>>>>> RestAssured_AddEmpToJSON_Server_UC2
+com/bridgelabz/EmployeePayrollDBService.java
+ com.bridgelabz.EmployeePayrollDBService
+com/bridgelabz/EmployeePayrollData.java
+ com.bridgelabz.EmployeePayrollData
 com/bridgelabz/EmployeePayrollService.java
  com.bridgelabz.EmployeePayrollService
  com.bridgelabz.EmployeePayrollService$IOService
-com/bridgelabz/EmployeePayrollData.java
- com.bridgelabz.EmployeePayrollData
-com/bridgelabz/EmployeePayrollDBService.java
- com.bridgelabz.EmployeePayrollDBService
-<<<<<<< HEAD
-com/bridgelabz/PayrollServiceDB.java
- com.bridgelabz.PayrollServiceDB
-=======
->>>>>>> RestAssured_AddEmpToJSON_Server_UC2
