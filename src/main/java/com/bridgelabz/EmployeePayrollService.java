@@ -7,19 +7,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 public class EmployeePayrollService
 {
 
+    public enum IOService {DB_IO, REST_IO}
 
-    public enum IOService {DB_IO}
 
     private List<EmployeePayrollData> employeePayrollList;
-    private List<EmployeePayrollData> employeePayrollDataList;
 
-    private EmployeePayrollDBService employeePayrollDBService;
+    private  final EmployeePayrollDBService employeePayrollDBService;
 
-       public EmployeePayrollService()
+    public EmployeePayrollService()
     {
         employeePayrollDBService = EmployeePayrollDBService.getInstance();
     }
@@ -27,21 +25,21 @@ public class EmployeePayrollService
     public EmployeePayrollService(List<EmployeePayrollData> employeePayrollList)
     {
         this();
-        this.employeePayrollList = employeePayrollList;
+        this.employeePayrollList = new ArrayList<>(employeePayrollList);
     }
 
     public List<EmployeePayrollData> readEmployeePayrollData(IOService ioService)
     {
         if(ioService.equals(IOService.DB_IO))
-            this.employeePayrollDataList = new EmployeePayrollDBService().readData();
-        return this.employeePayrollDataList;
+            this.employeePayrollList = new EmployeePayrollDBService().readData();
+        return this.employeePayrollList;
     }
 
     public List<EmployeePayrollData> readEmployeePayrollDataForDateRange(IOService ioService, LocalDate startDate, LocalDate endDate)
     {
         if (ioService.equals(IOService.DB_IO))
-            return employeePayrollDBService.getEmployeePayrollDataForDateRange(startDate, endDate);
-        return null;
+            this.employeePayrollList = employeePayrollDBService.readData();
+        return this.employeePayrollList;
     }
 
 
@@ -127,19 +125,21 @@ public class EmployeePayrollService
                 System.out.println("Employee Added: " + Thread.currentThread().getName());
             };
             Thread thread = new Thread(task, employeePayrollData.name);
+            thread.setPriority(10);
             thread.start();
         });
         while (employeeAdditionStatus.containsValue(false)) {
             try {
-                Thread.sleep(10);
+                Thread.sleep(500000);
             } catch (InterruptedException e) {
             }
         }
         System.out.println(employeePayrollDataList);
     }
 
-    public int countEntries()
-    {
-        return employeePayrollList.size();
+    public long countEntries(IOService ioService) {
+        if (ioService.equals(IOService.DB_IO) || ioService.equals(IOService.REST_IO))
+            return employeePayrollList.size();
+        return 0;
     }
 }

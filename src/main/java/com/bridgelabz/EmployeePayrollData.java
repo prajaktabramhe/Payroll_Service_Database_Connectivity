@@ -7,10 +7,8 @@ public class EmployeePayrollData
 {
     public static Double  basic_pay;
     public String name;
-
     public int id;
     public String gender;
-
     public LocalDate startDate;
 
     public EmployeePayrollData(Integer id, String name, Double  basic_pay)
@@ -32,6 +30,12 @@ public class EmployeePayrollData
         this(id, name, salary, startDate);
         this.gender = gender;
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, gender, basic_pay, startDate);
+    }
+
     @Override
     public String toString()
     {
