@@ -58,7 +58,8 @@ public class EmployeePayrollService
         if (employeePayrollData != null)
             EmployeePayrollData.basic_pay = basic_pay;
     }
-    public void updateEmployeeSalaryWithPreparedStatement(String name, Double basic_pay) {
+    public void updateEmployeeSalaryWithPreparedStatement(String name, Double basic_pay)
+    {
         int result = employeePayrollDBService.updateEmployeeDataUsingPreparedStatement(name, basic_pay);
         if (result == 0) return;
         EmployeePayrollData employeePayrollData = this.getEmployeePayrollData(name);
@@ -143,10 +144,13 @@ public class EmployeePayrollService
         return 0;
     }
 
-    public void addEmployeeAndPayroll(EmployeePayrollData employeePayrollData, IOService ioService)
+
+    public void deleteEmployeePayroll(String name, IOService ioService)
     {
-        if (ioService.equals(IOService.DB_IO))
-            this.addEmployeeAndPayrollData(employeePayrollData.name, employeePayrollData.basic_pay, employeePayrollData.startDate, employeePayrollData.gender);
-        else employeePayrollList.add(employeePayrollData);
+        if (ioService.equals(IOService.REST_IO)) {
+            EmployeePayrollData employeePayrollData = this.getEmployeePayrollData(name);
+            employeePayrollList.remove(employeePayrollData);
+        }
     }
+
 }
