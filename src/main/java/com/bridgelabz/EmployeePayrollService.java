@@ -105,11 +105,6 @@ public class EmployeePayrollService
         });
         System.out.println(this.employeePayrollList);
     }
-    public void addEmployeeAndPayroll(EmployeePayrollData employeePayrollData, IOService ioService) {
-        if (ioService.equals(IOService.DB_IO))
-            this.addEmployeeAndPayrollData(employeePayrollData.name, employeePayrollData.basic_pay, employeePayrollData.startDate, employeePayrollData.gender);
-        else employeePayrollList.add(employeePayrollData);
-    }
 
     private void addEmployeeAndPayrollData(String name, double basic_pay, LocalDate startDate, String gender)
     {
@@ -131,7 +126,8 @@ public class EmployeePayrollService
             thread.setPriority(10);
             thread.start();
         });
-        while (employeeAdditionStatus.containsValue(false)) {
+        while (employeeAdditionStatus.containsValue(false))
+        {
             try {
                 Thread.sleep(500000);
             } catch (InterruptedException e) {
@@ -140,9 +136,17 @@ public class EmployeePayrollService
         System.out.println(employeePayrollDataList);
     }
 
-    public long countEntries(IOService ioService) {
+    public long countEntries(IOService ioService)
+    {
         if (ioService.equals(IOService.DB_IO) || ioService.equals(IOService.REST_IO))
             return employeePayrollList.size();
         return 0;
+    }
+
+    public void addEmployeeAndPayroll(EmployeePayrollData employeePayrollData, IOService ioService)
+    {
+        if (ioService.equals(IOService.DB_IO))
+            this.addEmployeeAndPayrollData(employeePayrollData.name, employeePayrollData.basic_pay, employeePayrollData.startDate, employeePayrollData.gender);
+        else employeePayrollList.add(employeePayrollData);
     }
 }
